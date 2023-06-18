@@ -23,6 +23,7 @@ public class characterController : MonoBehaviour
     [SerializeField] private GameObject[] TokyoMesh;
     [SerializeField] private TextMeshProUGUI health;
     [SerializeField] GameObject damagePanel;
+    private AudioSource tokyoSoundSource;
 
     public int hth = 100;
     
@@ -33,6 +34,7 @@ public class characterController : MonoBehaviour
         Instance = this;
         anim = GetComponent<Animator>();
         anim.SetBool("dead", false);
+        tokyoSoundSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -61,7 +63,8 @@ public class characterController : MonoBehaviour
             if (hth>0) hth -= 10;
             health.text = hth.ToString();
             StartCoroutine(damageAnimation());
-
+            tokyoSoundSource.Play();
+            //sound effect
         }
     }
 
